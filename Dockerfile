@@ -66,6 +66,6 @@ ENV NODE_ENV=production \
   OPENCODE_ALLOW_ALL_MODELS=true
 
 EXPOSE 3100
-
+RUN pip install hermes-agent --break-system-packages
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["node", "--import", "./server/node_modules/tsx/dist/loader.mjs", "server/dist/index.js"]
