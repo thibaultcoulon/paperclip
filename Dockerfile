@@ -49,7 +49,8 @@ RUN npm install --global --omit=dev @anthropic-ai/claude-code@latest @openai/cod
   && chown node:node /paperclip
 RUN curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | NONINTERACTIVE=1 CI=1 bash || true \
     && cp /root/.local/bin/hermes /usr/local/bin/hermes \
-    && chmod +x /usr/local/bin/hermes
+    && chmod 755 /usr/local/bin/hermes \
+    && chown root:root /usr/local/bin/hermes
 ENV PATH="/root/.local/bin:${PATH}"
 
 COPY scripts/docker-entrypoint.sh /usr/local/bin/
