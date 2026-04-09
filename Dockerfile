@@ -64,7 +64,8 @@ ENV NODE_ENV=production \
   PAPERCLIP_DEPLOYMENT_MODE=authenticated \
   PAPERCLIP_DEPLOYMENT_EXPOSURE=private \
   OPENCODE_ALLOW_ALL_MODELS=true
-
+RUN apt-get update && apt-get install -y python3-pip python3-venv --no-install-recommends
+RUN python3 -m pip install hermes-agent --break-system-packages
 EXPOSE 3100
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["node", "--import", "./server/node_modules/tsx/dist/loader.mjs", "server/dist/index.js"]
